@@ -12,17 +12,27 @@ const port = process.env.PORT || 8000;
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
+//remove cors from local development
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+	next();
+});
+
 app.get("/", (req: Request, res: Response) => {
 	res.send("Welcome to the Dogs CRUD API");
 });
 
 app.get("/dogs", async (req, res) => {
-	try {
-		const dogs = await selectAllDogs();
-		res.status(200).json(dogs);
-	} catch (error) {
-		res.status(500).json({ message: "Error fetching dogs", error });
-	}
+	setTimeout(async () => {
+		try {
+			const dogs = await selectAllDogs();
+			res.status(200).json(dogs);
+		} catch (error) {
+			res.status(500).json({ message: "Error fetching dogs", error });
+		}
+	}, 5000); // Delay of 2 seconds
 });
 
 // To get a single dog by ID

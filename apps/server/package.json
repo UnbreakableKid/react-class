@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "run:server": "ts-node-dev --respawn src/index.ts"
+    "run:server": "ts-node-dev --respawn src/index.ts",
+    "run:vite": "ts-node-dev --respawn src/index.ts"
   },
   "dependencies": {
     "@repo/database": "workspace:*",

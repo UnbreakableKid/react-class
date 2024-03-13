@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useBreedList } from "../api/queries/breedQueries";
 import Card from "../components/Card";
 import "../App.css";
 
@@ -8,62 +7,8 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-	const { data: breedList, error, isLoading, refetch } = useBreedList();
-
-	//showcase the same but using useffect
-	// const [breedList, setBreedList] = useState<FetchDogsResult>();
-	// const [error, setError] = useState<Error>();
-	// const [isLoading, setIsLoading] = useState(true);
-
-	// useEffect(() => {
-	// 	const fetchBreedList = async () => {
-	// 		const response = await getDogs();
-	// 		setBreedList(response);
-	// 		setIsLoading(false);
-	// 	};
-	// 	fetchBreedList();
-	// }, []);
-
-	// function refetch() {
-	// 	setIsLoading(true);
-	// 	setError(undefined);
-	// 	setBreedList(undefined);
-	// 	getDogs()
-	// 		.then((response) => {
-	// 			setBreedList(response);
-	// 			setIsLoading(false);
-	// 		})
-	// 		.catch((error) => {
-	// 			setError(error);
-	// 			setIsLoading(false);
-	// 		});
-	// }
-
 	return (
 		<>
-			{/* loop through the first 100 breeeds */}
-			{isLoading && <p>Loading...</p>}
-			{error && (
-				<>
-					<p>Something went wrong</p>
-					<button type="button" onClick={refetch}>
-						Retry
-					</button>
-				</>
-			)}
-
-			{breedList?.data && (
-				<ul>
-					{breedList.data.map((breed) => (
-						<li key={breed.id}>{breed.attributes.name}</li>
-					))}
-				</ul>
-			)}
-
-			<button type="button" onClick={refetch}>
-				Refetch
-			</button>
-
 			<div className="flex gap-5">
 				{[1, 2, 3].map((i) => (
 					<Card key={i} title={`Carta nº ${i}`}>

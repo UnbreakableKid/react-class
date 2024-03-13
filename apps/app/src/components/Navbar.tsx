@@ -1,17 +1,13 @@
+import { Link } from "@tanstack/react-router";
+
 const Navbar = () => {
 	return (
-		<nav>
-			<ul>
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>
-					<a href="/about">About</a>
-				</li>
-				<li>
-					<a href="/contact">Contact</a>
-				</li>
-			</ul>
+		<nav className="flex justify-between items-center h-16 relative shadow-sm font-mono">
+			<a href="/">Home</a>
+
+			<a href="/about">About</a>
+
+			<Link to="/dogShowcase">Dog Showcase</Link>
 		</nav>
 	);
 };
