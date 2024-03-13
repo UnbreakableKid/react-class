@@ -12,6 +12,23 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "db:push": {
+      "cache": false
+    },
+    "run:server": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "db:seed": {
+      "dependsOn": ["db:push"],
+      "cache": false
+    },
+    "run:vite": {
+      "cache": false,
+      "dependsOn": ["db:push"],
+      "persistent": true
     }
   }
 }

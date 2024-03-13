@@ -5,7 +5,12 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:push": "turbo run db:push",
+    "run:server": "turbo run:server",
+    "db:seed": "turbo run db:seed",
+    "run:vite": "turbo run:vite"
+
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.1",

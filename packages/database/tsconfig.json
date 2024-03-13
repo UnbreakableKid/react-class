@@ -1,0 +1,10 @@
+{
+    "extends": "../typescript-config/base.json",
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "Node10",
+      "target": "ES2021",
+      "outDir": "./dist"
+    },
+    "exclude": ["dist", "node_modules"]
+  }
