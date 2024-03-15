@@ -7,5 +7,7 @@ export function useBreedList() {
 	return useQuery({
 		queryKey: ["breedList"],
 		queryFn: getDogs,
+		
+
 	});
 }

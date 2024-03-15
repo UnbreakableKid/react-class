@@ -1,15 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useBreedList } from "../api/queries/breedQueries";
-import { useState, useEffect } from "react";
-import { Dog, getDogs } from "../api/dogAPI";
 
-export const Route = createFileRoute("/dogShowcase")({
+export const Route = createFileRoute("/dataFetching")({
 	component: DogShowcase,
 });
 
 function DogShowcase() {
-	const { data: breedList, error, isLoading, refetch } = useBreedList();
-
 	//showcase the same but using useffect
 	// const [breedList, setBreedList] = useState<Dog[]>();
 	// const [error, setError] = useState<Error>();
@@ -40,29 +35,13 @@ function DogShowcase() {
 	// }
 
 	return (
-		<div
-			className="w-full
-        "
-		>
+		<div className="w-full">
 			<h1>Dog Showcase</h1>
+			<ul className="grid grid-cols-3 gap-4 mt-12">Put the list here please</ul>
 
-			{isLoading && <p>Loading...</p>}
-			{error && <p>Something went wrong</p>}
-
-			<ul
-				className="grid grid-cols-3 gap-4 mt-12
-            "
-			>
-				{breedList?.map((breed) => (
-					<li key={breed.id}>
-						{breed.name}, Age {breed.age}
-					</li>
-				))}
-			</ul>
-
-			<button type="button" onClick={() => refetch()}>
+			{/* <button type="button" onClick={() => refetch()}>
 				Refetch
-			</button>
+			</button> */}
 		</div>
 	);
 }

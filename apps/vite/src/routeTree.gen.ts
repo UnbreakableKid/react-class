@@ -13,7 +13,8 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as DogShowcaseImport } from './routes/dogShowcase'
+import { Route as DataFetchingImport } from './routes/dataFetching'
+import { Route as ComponentBuildingImport } from './routes/componentBuilding'
 import { Route as AboutImport } from './routes/about'
 
 // Create Virtual Routes
@@ -22,8 +23,13 @@ const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const DogShowcaseRoute = DogShowcaseImport.update({
-  path: '/dogShowcase',
+const DataFetchingRoute = DataFetchingImport.update({
+  path: '/dataFetching',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ComponentBuildingRoute = ComponentBuildingImport.update({
+  path: '/componentBuilding',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -49,8 +55,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/dogShowcase': {
-      preLoaderRoute: typeof DogShowcaseImport
+    '/componentBuilding': {
+      preLoaderRoute: typeof ComponentBuildingImport
+      parentRoute: typeof rootRoute
+    }
+    '/dataFetching': {
+      preLoaderRoute: typeof DataFetchingImport
       parentRoute: typeof rootRoute
     }
   }
@@ -61,7 +71,8 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   AboutRoute,
-  DogShowcaseRoute,
+  ComponentBuildingRoute,
+  DataFetchingRoute,
 ])
 
 /* prettier-ignore-end */

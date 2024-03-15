@@ -32,7 +32,7 @@ app.get("/dogs", async (req, res) => {
 		} catch (error) {
 			res.status(500).json({ message: "Error fetching dogs", error });
 		}
-	}, 5000); // Delay of 2 seconds
+	}, 5000); // Delay of 5 seconds
 });
 
 // To get a single dog by ID

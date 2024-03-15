@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "vite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -20,10 +20,11 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@repo/database": "workspace:*",
     "@julr/vite-plugin-validate-env": "^1.1.1",
+    "@repo/database": "workspace:*",
     "@tanstack/eslint-plugin-query": "^5.27.7",
     "@tanstack/router-vite-plugin": "^1.19.6",
+    "@types/node": "^20.11.24",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^7.1.1",

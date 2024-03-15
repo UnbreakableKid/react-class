@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { add } from "../utils/util";
 
 const Counter = () => {
 	const [count, setCount] = useState(0);
@@ -11,10 +10,10 @@ const Counter = () => {
 	return (
 		<button
 			type="button"
-			className="text-yellow-300 flex "
+			className="bg-slate-700 rounded-md p-2 m-2 hover:bg-slate-800  transition-colors duration-300 ease-in-out"
 			onClick={() => setCount((count) => count + 1)}
 		>
-			count is {count} {add(count, count + 1)} <br /> Click me
+			count is {count} <br /> Click me
 		</button>
 	);
 };
