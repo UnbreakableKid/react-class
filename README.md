@@ -14,3 +14,15 @@ Some of the technologies used in this project are:
 The lessons are contained in the `lessons` folder.
 
 For now, the project is only a Vite app and an Express server, but we plan to add a NextJS version to show the differences between the two frameworks.
+
+# First run
+
+To run the project, you need to have NodeJS and Pnpm installed.
+
+After that, you can run the following commands:
+
+```bash
+pnpm install
+pnpm db:push
+pnpm build
+```
