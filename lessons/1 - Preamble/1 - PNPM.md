@@ -21,7 +21,13 @@ if there are conflicting dependencies in your project, pnpm will automatically r
 
 ## Installing pnpm
 
-Since we can't install through scripts, we need to install pnpm globally. To do that, we can use npm or yarn.
+### Powershell
+
+```bash
+iwr https://get.pnpm.io/install.ps1 -useb | iex
+```
+
+### Shell
 
 ```bash
 npm install -g pnpm
