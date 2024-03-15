@@ -130,3 +130,27 @@ function App() {
   );
 }
 ```
+## Component rerendering
+
+When a component is re-rendered, React will compare the new props with the old props to determine if the component needs to be re-rendered. If the props are the same, React will not re-render the component.
+
+## Component lifecycle
+
+
+### Class components
+
+In class components, there are several lifecycle methods that you can use to perform actions at different stages of the component's lifecycle. These methods include:
+
+- `componentDidMount`: This method is called after the component is mounted to the DOM. This is a good place to perform any side effects, such as fetching data from an API.
+
+- `componentDidUpdate`: This method is called after the component is updated. This is a good place to perform any side effects when the component's props or state change.
+
+- `componentWillUnmount`: This method is called before the component is removed from the DOM. This is a good place to perform any cleanup, such as unsubscribing from an event listener.
+
+### Functional components
+
+In functional components, you can use hooks to perform actions at different stages of the component's lifecycle. These hooks include:
+
+- `useState`: This hook allows you to add state to a functional component. It returns a stateful value and a function to update it.
+
+- `useEffect`: This hook lets you perform side effects in function components. It runs after every render. They have a dependency array that lets you control when the effect runs.
