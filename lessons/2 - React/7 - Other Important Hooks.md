@@ -1,5 +1,33 @@
 # Other Important Hooks
 
+## useRef
+
+`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component.
+
+```jsx
+
+import React, { useRef, useEffect } from 'react';
+
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
+
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  );
+}
+```
+
+
 ## useReducer
 
 `useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.
@@ -104,30 +132,6 @@ function Child({ sortedDataSet }) {
   return <p>{sortedDataSet}</p>;
 }
 ```
+## NOTE: Sometimes it's better to not do any optimization at all
 
-## useRef
-
-`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component.
-
-```jsx
-
-import React, { useRef, useEffect } from 'react';
-
-function TextInputWithFocusButton() {
-  const inputEl = useRef(null);
-  const onButtonClick = () => {
-    // `current` points to the mounted text input element
-    inputEl.current.focus();
-  };
-  useEffect(() => {
-    inputEl.current.focus();
-  }, []);
-
-  return (
-    <>
-      <input ref={inputEl} type="text" />
-      <button onClick={onButtonClick}>Focus the input</button>
-    </>
-  );
-}
-```
+Most of the times, you should not worry about performance optimization until you have a performance problem. Optimizing too early can lead to unnecessary complexity and make the code harder to understand. Not only that, but it can also lead to premature optimization, which is the root of all evil.
