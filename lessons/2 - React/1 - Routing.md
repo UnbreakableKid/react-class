@@ -2,6 +2,50 @@
 
 React doesn't have the concept of "pages" since it's a single-page application (SPA) framework. For this, we need to use a routing library. The most popular one is `react-router-dom`.
 
+## Code based routing
+
+The setup of the routes is done in code, and the library will handle the navigation and rendering of the components.
+
+```jsx
+const routes: RouteObject[] = [
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "playground", element: <PlaygroundPage /> },
+      { path: "products", element: <ProductListPage /> },
+      { path: "products/:id", element: <ProductDetailPage /> },
+      {
+        path: "admin",
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <AdminHomePage /> },
+          { path: "products", element: <AdminProductListPage /> },
+          { path: "products/new", element: <NewProductPage /> },
+          { path: "products/:id/edit", element: <EditProductPage /> },
+        ],
+      },
+    ],
+  },
+];
+ ```
+
+## File based routing
+
+The setup of the routes is done by how they are organized in the file system.
+
+- routes
+    - __root.tsx
+    - _layout.tsx
+    - index.tsx
+    - items
+        - _layout.tsx
+        - index.tsx
+        - [id].tsx
+
+
 ## What is react-router-dom?
 
 `react-router-dom` is a routing library for React. It allows you to create routes in your application and navigate between them. It is the most popular routing library for React and it is widely used in the React community.
@@ -38,7 +82,7 @@ Utilizing the power of Vite through their plugins, this automatically generates 
 ### Server-side routing
 
 In a traditional web application, the navigation is done server-side. This means that when you click a link, the page reloads, and the server sends the new page. This is done using the `href` attribute of the `a` tag.
- 
+
 ### Client-side routing/navigation
 
 In a single-page application, the navigation is done client-side. This means that when you click a link, the page doesn't reload, and the URL changes. This is done using the `history` API, which allows you to change the URL without reloading the page.
