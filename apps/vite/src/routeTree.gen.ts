@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as MemoizationImport } from './routes/memoization'
 import { Route as DataFetchingImport } from './routes/dataFetching'
 import { Route as ComponentBuildingImport } from './routes/componentBuilding'
 import { Route as AboutImport } from './routes/about'
@@ -22,6 +23,11 @@ import { Route as AboutImport } from './routes/about'
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const MemoizationRoute = MemoizationImport.update({
+  path: '/memoization',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const DataFetchingRoute = DataFetchingImport.update({
   path: '/dataFetching',
@@ -63,6 +69,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataFetchingImport
       parentRoute: typeof rootRoute
     }
+    '/memoization': {
+      preLoaderRoute: typeof MemoizationImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -73,6 +83,7 @@ export const routeTree = rootRoute.addChildren([
   AboutRoute,
   ComponentBuildingRoute,
   DataFetchingRoute,
+  MemoizationRoute,
 ])
 
 /* prettier-ignore-end */

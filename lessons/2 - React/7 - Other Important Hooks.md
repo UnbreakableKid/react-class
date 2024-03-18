@@ -35,29 +35,39 @@ function Counter() {
 
 In this example, `dispatch` is passed down to the buttons, so they can update the state.
 
+# The following hooks are used for performance optimization. They are not used as often as the other hooks, but they are still important to know.
+
 
 ## useCallback
 
-`useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+`useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. When rendering a component, a function is created every time the component renders. In this example, every time the user toggles the theme, a new `handleSubmit` function is created.
 
 ```jsx
-import React, { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 
-function Parent() {
-  const [count, setCount] = useState(0);
-  const increment = useCallback(() => {
-    setCount(count + 1);
-  }, [count]);
+function ProductPage({ productId, referrer, theme }) {
+  const handleSubmit = useCallback((orderDetails) => {
+    post('/product/' + productId + '/buy', {
+      referrer,
+      orderDetails,
+    });
+  }, [productId, referrer]);
+  // ...
 
-  return <Child increment={increment} />;
+    return (
+    <div className={theme}>
+      <ShippingForm onSubmit={handleSubmit} />
+    </div>
+  );
 }
 
-function Child({ increment }) {
-  return <button onClick={increment}>Increment</button>;
-}
+const ShippingForm = memo(function ShippingForm({ onSubmit }) {
+  // ...
+});
 ```
 
-In this example, `increment` will only change if `count` changes.
+In this example, `useCallback` is used to memoize the `handleSubmit` function. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+
 
 ### Difference with `useMemo`
 
@@ -76,16 +86,22 @@ You might be wondering why not use `useEffect` to achieve the same result. The d
 import React, { useMemo } from 'react';
 
 function Parent() {
-  const [a, b] = [1, 2];
-  const sum = useMemo(() => {
-    return a + b;
-  }, [a, b]);
+  const [largeDataSet, setLargeDataSet] = useState([]);
+  useEffect(() => {
+    // fetch large data set
+    setLargeDataSet(largeDataSet);
+  }, []);
 
-  return <Child sum={sum} />;
+  const sortedDataSet = useMemo(() => {
+    return largeDataSet.sort();
+  }, [largeDataSet]);
+
+  return <Child sortedDataSet={sortedDataSet} />;
+
 }
 
-function Child({ sum }) {
-  return <p>Sum: {sum}</p>;
+function Child({ sortedDataSet }) {
+  return <p>{sortedDataSet}</p>;
 }
 ```
 
