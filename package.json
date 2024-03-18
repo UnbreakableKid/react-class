@@ -6,9 +6,10 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "db:push": "turbo run db:push",
+    "db:push": "pnpm -F database push",
+    "db:seed": "pnpm -F database seed",
+    "db:studio": "pnpm -F database studio",
     "run:server": "turbo run:server",
-    "db:seed": "turbo run db:seed",
     "run:vite": "turbo run:vite"
 
   },
