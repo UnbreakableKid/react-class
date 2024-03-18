@@ -1,5 +1,5 @@
 //add a few dogs to the database
-import { insertDog } from "./database";
+import { insertDog } from ".";
 
 insertDog("Fido", "Golden Retriever", 3);
 insertDog("Rex", "German Shepherd", 5);
