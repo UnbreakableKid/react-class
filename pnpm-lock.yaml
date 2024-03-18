@@ -21,6 +21,37 @@ importers:
         specifier: latest
         version: 1.12.5
 
+  apps/nextjs:
+    dependencies:
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      next:
+        specifier: ^14.1.1
+        version: 14.1.1(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.11.24
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.65
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.2.22
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
   apps/server:
     dependencies:
       '@repo/database':
@@ -124,37 +155,6 @@ importers:
       vite:
         specifier: ^5.1.6
         version: 5.1.6(@types/node@20.11.24)
-
-  apps/web:
-    dependencies:
-      '@repo/database':
-        specifier: workspace:*
-        version: link:../../packages/database
-      next:
-        specifier: ^14.1.1
-        version: 14.1.1(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-    devDependencies:
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
-      '@types/node':
-        specifier: ^20.11.24
-        version: 20.11.24
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.61
-      '@types/react-dom':
-        specifier: ^18.2.19
-        version: 18.2.19
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
 
   packages/database:
     dependencies:
@@ -1547,24 +1547,10 @@ packages:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
     dev: true
 
-  /@types/react-dom@18.2.19:
-    resolution: {integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==}
-    dependencies:
-      '@types/react': 18.2.65
-    dev: true
-
   /@types/react-dom@18.2.22:
     resolution: {integrity: sha512-fHkBXPeNtfvri6gdsMYyW+dW7RXFo6Ad09nLFK0VQWR7yGLai/Cyvyj696gbwYvBnhGtevUG9cET0pmUbMtoPQ==}
     dependencies:
       '@types/react': 18.2.65
-    dev: true
-
-  /@types/react@18.2.61:
-    resolution: {integrity: sha512-NURTN0qNnJa7O/k4XUkEW2yfygA+NxS0V5h1+kp9jPwhzZy95q3ADoGMP0+JypMhrZBTTgjKAUlTctde1zzeQA==}
-    dependencies:
-      '@types/prop-types': 15.7.5
-      '@types/scheduler': 0.16.3
-      csstype: 3.1.2
     dev: true
 
   /@types/react@18.2.65:
@@ -3391,6 +3377,7 @@ packages:
 
   /loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
     dependencies:
       js-tokens: 4.0.0
     dev: false
