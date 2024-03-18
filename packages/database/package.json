@@ -2,12 +2,14 @@
   "name": "@repo/database",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/index.js",
-  "scripts": {
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },  "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
     "push": "drizzle-kit push:sqlite",
-    "seed": "ts-node ./seed.ts",
+    "seed": "tsx  ./seed.ts",
     "studio": "drizzle-kit studio"
   },
   "devDependencies": {

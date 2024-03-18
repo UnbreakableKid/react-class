@@ -1,5 +1,4 @@
 import express, { type Express, type Request, type Response } from "express";
-import { dogs } from "@repo/database/dist/schema";
 import {
 	deleteDogById,
 	insertDog,

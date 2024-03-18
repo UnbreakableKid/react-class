@@ -6,11 +6,13 @@ import { dogs } from "./schema";
 
 const sqlite = new Database("../../packages/database/sqlite.db");
 
-const db = drizzle(sqlite, {
+export const db = drizzle(sqlite, {
 	schema: {
 		dogs,
 	},
 });
+
+export * from "drizzle-orm";
 
 export async function selectAllDogs() {
 	return await db.select().from(dogs);
@@ -27,5 +29,3 @@ export async function deleteDogById(id: number) {
 export async function insertDog(name: string, breed: string, age: number) {
 	return await db.insert(dogs).values({ name, breed, age });
 }
-
-export default db;
