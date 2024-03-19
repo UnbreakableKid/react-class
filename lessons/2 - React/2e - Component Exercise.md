@@ -29,11 +29,11 @@ We want the Card component to be reusable and accept props for the title and con
 
 ## Part 3
 
-The card component should be agnostic about the content it receives. Let's update the Card component to make that happen. No instructions are provided for this part, as it is a challenge for you to figure out how to make the Card component agnostic about the content it receives.
+The card component should be agnostic about the content/body it receives. Let's update the Card component to make that happen. No instructions are provided for this part, as it is a challenge for you to figure out how to make the Card component agnostic about the content it receives.
 
 ## Part 4
 
-Let's create a new component called `CardList` that will render a list of cards. The `CardList` component should accept an array of objects as props, where each object represents a card with a title and content. To test this, create cards with diffeerent contents, i.e different colors, font sizes, etc.
+Let's create a new component called `CardList` that will render a list of cards. The `CardList` component should accept an array of Cards as props, where each object represents a card with a title and content. To test this, create cards with diffeerent contents, i.e different colors, font sizes, etc.
 
 ### Instructions
 

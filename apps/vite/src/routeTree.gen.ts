@@ -16,7 +16,6 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as MemoizationImport } from './routes/memoization'
 import { Route as DataFetchingImport } from './routes/dataFetching'
 import { Route as ComponentBuildingImport } from './routes/componentBuilding'
-import { Route as AboutImport } from './routes/about'
 
 // Create Virtual Routes
 
@@ -39,11 +38,6 @@ const ComponentBuildingRoute = ComponentBuildingImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AboutRoute = AboutImport.update({
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
@@ -55,10 +49,6 @@ declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
     '/componentBuilding': {
@@ -80,7 +70,6 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
-  AboutRoute,
   ComponentBuildingRoute,
   DataFetchingRoute,
   MemoizationRoute,

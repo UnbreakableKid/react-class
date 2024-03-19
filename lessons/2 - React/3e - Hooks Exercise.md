@@ -23,9 +23,18 @@ Let's create a simple Counter component that will display a count and two button
 
 ## Part 2
 
-We want to create 2 Counters that will share the same state. Let's update the Counter component to accept a prop that will determine the initial count. The Counters should share the same state and update the count together.
+Now, we want to change the title of the page to display the current count of the Counter component. The title should update whenever the count changes.
 
 ## Part 3
 
+We want to create 2 Counters that will share the same state. Let's update the Counter component to accept a prop that will determine the initial count. The Counters should share the same state and update the count together.
+
+## Part 4
+
 We want the Counter value to be on the page component instead of the Counter component.
 Also, there should be 2 different Counters that will share the same state like in Part 2, but now one should be able to increment and the other to decrement. The Counters should also display a field where it shows what the current count will be after the operation.
+
+
+## Part 5
+
+Now I want to add the possibility to multiply. When a counter is of multiply, the user can pass a prop of the value to multiply by.
