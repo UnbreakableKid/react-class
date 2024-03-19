@@ -1,92 +1,93 @@
-import express, { type Express, type Request, type Response } from "express";
+import { serve } from "@hono/node-server";
+import { zValidator } from "@hono/zod-validator";
 import {
 	deleteDogById,
 	insertDog,
 	selectAllDogs,
 	selectDogById,
 } from "@repo/database";
+import { Hono } from "hono";
+import { z } from "zod";
 
-const app: Express = express();
-const port = process.env.PORT || 8000;
+const app = new Hono();
 
-app.use(express.json()); // Middleware to parse JSON bodies
+const port = 8000;
+console.log(`Server is running on port ${port}`);
 
-//remove cors from local development
-app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-	next();
+app.get("/", ({ text }) => {
+	return text("Welcome to the Dogs CRUD API");
 });
 
-app.get("/", (req: Request, res: Response) => {
-	res.send("Welcome to the Dogs CRUD API");
-});
-
-app.get("/dogs", async (req, res) => {
+app.get("/dogs", async ({ json }) => {
 	setTimeout(async () => {
 		try {
 			const dogs = await selectAllDogs();
-			res.status(200).json(dogs);
+			return json(dogs, 200);
 		} catch (error) {
-			res.status(500).json({ message: "Error fetching dogs", error });
+			return json({ message: "Error fetching dogs", error }, 500);
 		}
 	}, 5000); // Delay of 5 seconds
 });
 
 // To get a single dog by ID
-app.get("/dogs/:id", async (req, res) => {
-	if (typeof req.params.id !== "string") {
-		res.status(400).json({ message: "Invalid ID" });
-		return;
-	}
+app.get(
+	"/dogs/:id",
+	zValidator("param", z.object({ id: z.string() })),
+	async (c) => {
+		const { id } = c.req.valid("param");
+
+		try {
+			const dog = await selectDogById(+id);
+
+			if (dog) {
+				return c.json(dog, 200);
+			}
+
+			return c.json({ message: "Dog not found" }, 404);
+		} catch (error) {
+			return c.json({ message: "Error fetching the dog", error }, 500);
+		}
+	},
+);
+
+app.delete(
+	"/dogs/:id",
+	zValidator("param", z.object({ id: z.string() })),
+	async (c) => {
+		const { id } = c.req.valid("param");
+		try {
+			const deleteResult = await deleteDogById(+id);
+
+			if (deleteResult.changes > 0) {
+				return c.json({ message: "Dog deleted successfully" }, 200);
+			}
+			return c.json({ message: "Dog not found" }, 404);
+		} catch (error) {
+			return c.json({ message: "Error deleting the dog", error }, 500);
+		}
+	},
+);
+
+const bodySchema = z.object({
+	name: z.string(),
+	breed: z.string(),
+	age: z.number(),
+});
+
+app.post("/dogs", zValidator("json", bodySchema), async (c) => {
+	const { req, json } = c;
+
+	const { name, breed, age } = await req.valid("json");
 
 	try {
-		const dog = await selectDogById(+req.params.id);
-
-		if (dog) {
-			res.status(200).json(dog);
-		} else {
-			res.status(404).json({ message: "Dog not found" });
-		}
+		const dog = await insertDog(name, breed, age);
+		return json(dog.changes, 201);
 	} catch (error) {
-		res.status(500).json({ message: "Error fetching the dog", error });
+		return json({ message: "Error adding the dog", error }, 500);
 	}
 });
 
-app.delete("/dogs/:id", async (req, res) => {
-	try {
-		if (typeof req.params.id !== "string") {
-			throw new Error("Invalid ID");
-		}
-		const deleteResult = await deleteDogById(+req.params.id);
-
-		if (deleteResult.changes > 0) {
-			res.status(200).json({ message: "Dog deleted successfully" });
-		} else {
-			res.status(404).json({ message: "Dog not found" });
-		}
-	} catch (error) {
-		res.status(500).json({ message: "Error deleting the dog", error });
-	}
-});
-
-app.post("/dogs", async (req, res) => {
-	try {
-		if (
-			typeof req.body.name !== "string" ||
-			typeof req.body.breed !== "string" ||
-			typeof req.body.age !== "number"
-		) {
-			throw new Error("Invalid input");
-		}
-		const dog = await insertDog(req.body.name, req.body.breed, req.body.age);
-		res.status(201).json(dog);
-	} catch (error) {
-		res.status(500).json({ message: "Error adding the dog", error });
-	}
-});
-
-app.listen(port, () => {
-	console.log(`Server is running at http://localhost:${port}`);
+serve({
+	fetch: app.fetch,
+	port,
 });

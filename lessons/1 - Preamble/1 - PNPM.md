@@ -1,6 +1,6 @@
 # PNPM
 
-As you know, the nodejs ecosystem is full of package managers. The most popular one is npm. But there is a new kid on the block, pnpm. It is a package manager for JavaScript that is fast, disk space efficient, and it has a deterministic lockfile. In this lesson, we will learn how to use pnpm to manage our project dependencies.
+As you know, the nodejs ecosystem is full of package managers. The most popular one is npm. But there is a new kid on the block, pnpm. It is a package manager for JavaScript that is fast, disk space efficient. We are using it in this project, not only because it is fast and efficient, but also because it has some features that are very useful for monorepos.
 
 ## What is pnpm?
 
