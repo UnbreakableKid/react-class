@@ -6,9 +6,9 @@ import { Link } from "@tanstack/react-router";
 
 const Navbar = () => {
 	return (
-		<nav className="flex justify-between items-center h-16 relative shadow-sm font-mono">
+		<nav className="relative flex h-16 items-center justify-between font-mono shadow-sm">
 			<Link
-				className="text-3xl text-blue-500 font-bold underline hover:text-blue-700 cursor-pointer"
+				className="cursor-pointer font-bold text-3xl text-blue-500 underline hover:text-blue-700"
 				to="/"
 			>
 				Home

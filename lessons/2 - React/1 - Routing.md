@@ -86,3 +86,30 @@ In a traditional web application, the navigation is done server-side. This means
 ### Client-side routing/navigation
 
 In a single-page application, the navigation is done client-side. This means that when you click a link, the page doesn't reload, and the URL changes. This is done using the `history` API, which allows you to change the URL without reloading the page.
+
+
+## Outlets and nested routes
+
+In tanstack/router, you can use outlets to define where the child routes will be rendered. This is useful when you have a layout with a sidebar and a main content area, for example.
+
+```tsx
+export default function AdminLayout() {
+  return (
+    <div>
+      <h1>Admin</h1>
+      <Outlet />
+    </div>
+  );
+}
+```
+
+## Links
+
+In tanstack/router, you can use the `Link` component to create links to other routes. This is similar to the `Link` component in `react-router-dom`.
+
+```tsx
+
+<Link to="/">Home</Link>
+<Link to="playground">Playground</Link>
+
+```
