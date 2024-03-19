@@ -86,7 +86,3 @@ In a traditional web application, the navigation is done server-side. This means
 ### Client-side routing/navigation
 
 In a single-page application, the navigation is done client-side. This means that when you click a link, the page doesn't reload, and the URL changes. This is done using the `history` API, which allows you to change the URL without reloading the page.
-
-# Exercise
-
-Open the `routes` folder and take a look at the files. You can see that the file name is the route path, and the default export is the component that will be rendered when the route is accessed. Open the __root file and let's try to understand how it works and add a navbar to the application.

@@ -6,14 +6,14 @@ Some of the technologies used in this project are:
 
 - Vite
 - React
-- Tanstack/router
+- Tanstack Router + Tanstack Query
 - DrizzleORM
 - NextJS
-- Express
+- Hono
 
 The lessons are contained in the `lessons` folder.
 
-For now, the project is only a Vite app and an Express server, but we plan to add a NextJS version to show the differences between the two frameworks.
+For now, the project is only a Vite app and an Hono server, but we plan to add a NextJS version to show the differences between the two frameworks.
 
 # First run
 

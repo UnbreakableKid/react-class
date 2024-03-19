@@ -42,7 +42,3 @@ export default App;
 ```
 
 In this example, `ExpensiveComponent` is wrapped with `React.memo`. This will memoize the result of the component and return the cached result when the same props occur again.
-
-# Practice
-
-Go to the page for memoization, and see if you can find a way to use memoization to optimize the performance of the component.
