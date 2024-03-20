@@ -26,6 +26,22 @@ Tailwind CSS is a utility-first CSS framework that allows you to build your UI u
 </div>
 ```
 
+### Sane Defaults and Modifiers
+
+Tailwind provides with a lot of sane defaults and modifiers, so you can easily build your UI without having to write a lot of custom CSS. It also provides with quick selectors for responsive design, so you can easily build your UI for different screen sizes and dark mode support:
+
+```html
+<div class="bg-blue-500 text-white font-bold rounded-lg border shadow-lg p-10 md:p-20 lg:p-30 dark:bg-gray-800 dark:text-gray-200">
+    This is a blue box
+</div>
+```
+
+This will make the box have a padding of 10px on mobile, 20px on medium screens and 30px on large screens. It will also change the background and text color when dark mode is enabled.
+
+### Mobile First
+
+Tailwind enforces the mobile first approach. This means that you should write your CSS for mobile first, and add the selectors for larger screens later i.e, `md:p-20` for medium screens and `lg:p-30` for large screens.
+
 ### Customization
 
 While tailwind already gives you a lot of utility classes, you can also customize it to add your own utility classes, i.e extra colors, extra spacing, etc.
@@ -33,6 +49,8 @@ While tailwind already gives you a lot of utility classes, you can also customiz
 ### Primitive Components like Radix
 
 We can use Tailwind in combination with a library like Radix, which provides us with primitive components that we can use to build our UI, so we have highly accessible and customizable components.
+
+For more examples, you can check out the infamous [Shadcn/UI library](https://ui.shadcn.com/).
 
 ### Cons of Tailwind CSS
 

@@ -20,3 +20,7 @@ To run Storybook, you can use the following command:
 ```bash
 pnpm storybook
 ```
+
+## NOTE
+
+Usually in monorepos, Storybook is usually placed in its own package, since UI components are shared across different packages. But in this project, it's placed in the vite project for simplicity.
