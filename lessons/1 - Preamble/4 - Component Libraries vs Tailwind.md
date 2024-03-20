@@ -61,3 +61,12 @@ Obviously the main con of Tailwind is that it's not as easy to use as a componen
 Writing our own CSS can be a time-consuming process. We need to write a lot of CSS code to style our UI. With Tailwind CSS, we can build our UI faster and with less code. Tailwind CSS provides us with a set of utility classes that we can use to style our UI. This allows us to build our UI faster and with less code.
 
 Not only that, doing custom css in separate files leads to a lot of repetition, inconsistency and a lot of "left behind" code that is not used anymore, due to fear of removing it.
+
+## Why mention this?
+
+There are a couple of reasons why we mention this:
+- We want to make sure that you understand the difference between component libraries and Tailwind CSS.
+- We want to make sure that you understand the pros and cons of each approach.
+- We want to make sure that you understand the importance of learning CSS and not just component libraries.
+- There is a recent trend of using Tailwind CSS instead of component libraries, so it's important to know the difference.
+- We use Tailwind CSS in the project, so it's important to know how to use it.
