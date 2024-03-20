@@ -12,7 +12,7 @@ Some of the technologies used in this project are:
 - Hono
 - Storybook
 
-The lessons are contained in the `lessons` folder.
+The lessons are contained in the `lessons` folder. Some lessons have exercises associated, these are suffixed with an  e  after the number.
 
 For now, the project is only a Vite app and an Hono server, but we plan to add a NextJS version to show the differences between the two frameworks.
 
