@@ -10,7 +10,8 @@
     "db:seed": "pnpm -F database seed",
     "db:studio": "pnpm -F database studio",
     "run:server": "turbo run:server",
-    "run:vite": "turbo run:vite"
+    "run:vite": "turbo run:vite",
+    "storybook": "pnpm -F vite storybook"
 
   },
   "devDependencies": {
