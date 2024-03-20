@@ -27,7 +27,7 @@ if there are conflicting dependencies in your project, pnpm will automatically r
 iwr https://get.pnpm.io/install.ps1 -useb | iex
 ```
 
-### Shell
+### Node
 
 ```bash
 npm install -g pnpm
