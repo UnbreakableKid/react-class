@@ -17,9 +17,6 @@ export default async function Page(): Promise<JSX.Element> {
 					<p>{dog.breed}</p>
 				</div>
 			))}
-			<button type="button" onClick={addDog}>
-				Add Dog
-			</button>
 		</div>
 	);
 }
