@@ -13,6 +13,13 @@ const Navbar = () => {
 			>
 				Home
 			</Link>
+
+			<Link
+				className="cursor-pointer font-bold text-3xl text-blue-500 underline hover:text-blue-700"
+				to="/dogs"
+			>
+				About
+			</Link>
 		</nav>
 	);
 };

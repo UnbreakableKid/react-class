@@ -2,6 +2,7 @@
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import type { QueryClient } from "@tanstack/react-query";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import Navbar from "@/components/Navbar";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;
@@ -12,7 +13,7 @@ export const Route = createRootRouteWithContext<{
 function Layout() {
 	return (
 		<div className="container">
-			{/* <Navbar /> */}
+			<Navbar />
 			<Outlet />
 			<TanStackRouterDevtools />
 		</div>

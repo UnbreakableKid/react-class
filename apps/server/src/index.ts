@@ -7,9 +7,14 @@ import {
 	selectDogById,
 } from "@repo/database";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { z } from "zod";
 
 const app = new Hono();
+
+app.use("/*", cors());
+
+//cors middleware
 
 const port = 8000;
 console.log(`Server is running on port ${port}`);
@@ -19,14 +24,14 @@ app.get("/", ({ text }) => {
 });
 
 app.get("/dogs", async ({ json }) => {
-	setTimeout(async () => {
-		try {
-			const dogs = await selectAllDogs();
-			return json(dogs, 200);
-		} catch (error) {
-			return json({ message: "Error fetching dogs", error }, 500);
-		}
-	}, 5000); // Delay of 5 seconds
+	await new Promise((resolve) => setTimeout(resolve, 5000));
+
+	try {
+		const dogs = await selectAllDogs();
+		return json(dogs, 200);
+	} catch (error) {
+		return json({ message: "Error fetching dogs", error }, 500);
+	}
 });
 
 // To get a single dog by ID

@@ -14,8 +14,9 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as MemoizationImport } from './routes/memoization'
-import { Route as DataFetchingImport } from './routes/dataFetching'
 import { Route as ComponentBuildingImport } from './routes/componentBuilding'
+import { Route as DogsImport } from './routes/_dogs'
+import { Route as DogsDogsImport } from './routes/_dogs/dogs'
 
 // Create Virtual Routes
 
@@ -28,13 +29,13 @@ const MemoizationRoute = MemoizationImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DataFetchingRoute = DataFetchingImport.update({
-  path: '/dataFetching',
+const ComponentBuildingRoute = ComponentBuildingImport.update({
+  path: '/componentBuilding',
   getParentRoute: () => rootRoute,
 } as any)
 
-const ComponentBuildingRoute = ComponentBuildingImport.update({
-  path: '/componentBuilding',
+const DogsRoute = DogsImport.update({
+  id: '/_dogs',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -42,6 +43,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const DogsDogsRoute = DogsDogsImport.update({
+  path: '/dogs',
+  getParentRoute: () => DogsRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -51,17 +57,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/componentBuilding': {
-      preLoaderRoute: typeof ComponentBuildingImport
+    '/_dogs': {
+      preLoaderRoute: typeof DogsImport
       parentRoute: typeof rootRoute
     }
-    '/dataFetching': {
-      preLoaderRoute: typeof DataFetchingImport
+    '/componentBuilding': {
+      preLoaderRoute: typeof ComponentBuildingImport
       parentRoute: typeof rootRoute
     }
     '/memoization': {
       preLoaderRoute: typeof MemoizationImport
       parentRoute: typeof rootRoute
+    }
+    '/_dogs/dogs': {
+      preLoaderRoute: typeof DogsDogsImport
+      parentRoute: typeof DogsImport
     }
   }
 }
@@ -70,8 +80,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
+  DogsRoute.addChildren([DogsDogsRoute]),
   ComponentBuildingRoute,
-  DataFetchingRoute,
   MemoizationRoute,
 ])
 
