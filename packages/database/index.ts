@@ -14,6 +14,8 @@ export const db = drizzle(sqlite, {
 
 export * from "drizzle-orm";
 
+export * from "./schema";
+
 export async function selectAllDogs() {
 	return await db.select().from(dogs);
 }

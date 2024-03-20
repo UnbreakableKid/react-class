@@ -1,20 +1,25 @@
-import { dogs } from "@repo/database";
-import db from "@repo/database/dist/database";
+import { db, dogs, insertDog } from "@repo/database";
 
 export default async function Page(): Promise<JSX.Element> {
 	const doog = await db.select().from(dogs);
 
+	// loop through doog and render each one
+
+	async function addDog() {
+		await insertDog("Fido", "Golden Retriever", 3);
+	}
+
 	return (
 		<div>
-			{doog.map((d) => {
-				return (
-					<div>
-						<h1>{d.name}</h1>
-						<p>{d.breed}</p>
-						<p>{d.age}</p>
-					</div>
-				);
-			})}
+			{doog.map((dog) => (
+				<div key={dog.id}>
+					<h1>{dog.name}</h1>
+					<p>{dog.breed}</p>
+				</div>
+			))}
+			<button type="button" onClick={addDog}>
+				Add Dog
+			</button>
 		</div>
 	);
 }

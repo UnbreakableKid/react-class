@@ -24,5 +24,13 @@ After that, you can run the following commands:
 ```bash
 pnpm install
 pnpm db:push
-pnpm build
+```
+
+This will install the dependencies and push the database schema to the server.
+
+After that, you can run the following command to start the project:
+
+```bash
+pnpm run:vite // for the Vite app + server
+pnpm storybook // for the Storybook
 ```

@@ -9,7 +9,7 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "dev": {
+    "run:next": {
       "cache": false,
       "persistent": true
     },

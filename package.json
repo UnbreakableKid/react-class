@@ -11,7 +11,8 @@
     "db:studio": "pnpm -F database studio",
     "run:server": "turbo run:server",
     "run:vite": "turbo run:vite",
-    "storybook": "pnpm -F vite storybook"
+    "storybook": "pnpm -F vite storybook",
+    "run:next": "turbo run:next"
 
   },
   "devDependencies": {
