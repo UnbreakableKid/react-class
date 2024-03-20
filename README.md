@@ -10,6 +10,7 @@ Some of the technologies used in this project are:
 - DrizzleORM
 - NextJS
 - Hono
+- Storybook
 
 The lessons are contained in the `lessons` folder.
 
