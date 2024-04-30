@@ -11,8 +11,14 @@ A component is a reusable piece of code that can be used to build UI elements. C
 There are two types of components in React:
 
 - **Functional components**: These are simple functions that take in props and return a React element. They are the most common type of component in React.
+  - Functional components are also known as stateless components because they do not have state or lifecycle methods.
+  - They don't require to return JSX, instead, they can return a string, a number, a boolean, null, or an array.
+  - They can be used with hooks to add state and lifecycle methods.
+  - They can be used to create custom hooks to share logic between components.
 
 - **Class components**: These are ES6 classes that extend `React.Component`. They have a `render` method that returns a React element. They are less common than functional components, but they are still used in some cases.
+  - Class components have state and lifecycle methods.
+  - Class components need to extend `React.Component` and have a `render` method that returns a React element.
 
 ### Props
 
