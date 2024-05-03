@@ -36,7 +36,7 @@ npm install -g pnpm
 or through corepack
 
 ```bash
-npx corepack add pnpm
+corepack enable pnpm
 ```
 
 ## Comparison Chart
