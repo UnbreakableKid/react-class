@@ -5,7 +5,8 @@
   "type": "commonjs",
   "exports": {
     ".": "./index.ts"
-  },  "scripts": {
+  },
+  "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
     "push": "drizzle-kit push:sqlite",
@@ -13,13 +14,13 @@
     "studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.9",
-    "drizzle-kit": "^0.20.14",
-    "typescript": "^5.2.2"
+    "@types/better-sqlite3": "^7.6.10",
+    "drizzle-kit": "^0.20.18",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
-    "better-sqlite3": "^9.4.3",
-    "drizzle-orm": "^0.30.1",
+    "better-sqlite3": "^10.0.0",
+    "drizzle-orm": "^0.30.10",
     "tsx": "4.7.1"
   }
 }
