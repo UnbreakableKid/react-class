@@ -160,3 +160,39 @@ In functional components, you can use hooks to perform actions at different stag
 - `useState`: This hook allows you to add state to a functional component. It returns a stateful value and a function to update it.
 
 - `useEffect`: This hook lets you perform side effects in function components. It runs after every render. They have a dependency array that lets you control when the effect runs.
+
+
+### Bonus - My snippets
+
+Control + Shift + P -> Preferences: Configure User Snippets -> typescriptreact.json
+
+```json
+  "Typescript React Function Component With Props": {
+    "prefix": "rhp",
+    "body": [
+      "type ${TM_FILENAME_BASE/\\b\\w/${0:/capitalize}/}Props = {",
+      "$1",
+      "}",
+      "",
+      "const ${TM_FILENAME_BASE/\\b\\w/${0:/capitalize}/} = ({$2} : ${TM_FILENAME_BASE/\\b\\w/${0:/capitalize}/}Props) => {",
+      "\t\treturn (<></>$3);",
+      "}",
+      // "",
+      "export default ${TM_FILENAME_BASE/\\b\\w/${0:/capitalize}/};"
+    ],
+    "description": "Typescript React Function Component with Props"
+  },
+
+  "Typescript React Function Component Without Props": {
+    "prefix": "rh",
+    "body": [
+      "const ${TM_FILENAME_BASE/\\b\\w/${0:/capitalize}/} = () => {",
+      "\t\treturn (<></>$3);",
+      "}",
+      // "",
+      "export default ${TM_FILENAME_BASE/\\b\\w/${0:/capitalize}/};"
+    ],
+    "description": "Typescript React Function Component without Props"
+  }
+}
+```
