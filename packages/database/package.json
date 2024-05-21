@@ -14,13 +14,11 @@
     "studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.10",
-    "drizzle-kit": "^0.20.18",
+    "drizzle-kit": "^0.21.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "@libsql/client": "^0.6.0",
-    "better-sqlite3": "^10.0.0",
     "drizzle-orm": "^0.30.10",
     "tsx": "4.7.1"
   }
