@@ -1,10 +1,11 @@
 import * as schema from "./schema";
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
+
 import { eq } from "drizzle-orm";
 import { dogs } from "./schema";
 
-const sqlite = new Database("../../packages/database/sqlite.db");
+const sqlite = createClient({ url: "file:../../packages/database/sqlite.db" });
 
 export const db = drizzle(sqlite, {
 	schema: {

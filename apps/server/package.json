@@ -2,7 +2,8 @@
   "name": "server",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "run:vite": "tsx watch src/index.ts"
+    "run:vite": "tsx watch src/index.ts",
+    "run:server": "tsx watch src/index.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.8.2",

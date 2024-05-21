@@ -63,7 +63,7 @@ app.delete(
 		try {
 			const deleteResult = await deleteDogById(+id);
 
-			if (deleteResult.changes > 0) {
+			if (deleteResult.rowsAffected > 0) {
 				return c.json({ message: "Dog deleted successfully" }, 200);
 			}
 			return c.json({ message: "Dog not found" }, 404);
@@ -86,7 +86,7 @@ app.post("/dogs", zValidator("json", bodySchema), async (c) => {
 
 	try {
 		const dog = await insertDog(name, breed, age);
-		return json(dog.changes, 201);
+		return json(dog.rowsAffected, 201);
 	} catch (error) {
 		return json({ message: "Error adding the dog", error }, 500);
 	}
