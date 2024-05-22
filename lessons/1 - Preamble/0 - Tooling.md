@@ -10,13 +10,13 @@ ESLint is a static code analysis tool for identifying problematic patterns found
 
 ### Example of a caught error
 
-```js
+```jsx
 
 const [count, setCount] = useState(0);
 
 useEffect(() => {
     setCount(count + 1);
-    }, []);
+}, []);
 ```
 
 In this example, ESLint will catch the error because the `count` variable is not included in the dependency array of the `useEffect` hook. This can lead to bugs in your code.
