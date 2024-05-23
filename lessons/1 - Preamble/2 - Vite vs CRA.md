@@ -16,6 +16,7 @@ Vite has a plugin system that allows you to extend its functionality. You can us
 - Vite plugin for Vue
 - Vite plugin for Preact
 - Vite plugin for Svelte
+- Angular plugin
 - Environment variables plugin
 - TanstackRouter plugin
 
