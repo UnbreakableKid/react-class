@@ -19,6 +19,8 @@ Vite has a plugin system that allows you to extend its functionality. You can us
 - Environment variables plugin
 - TanstackRouter plugin
 
+**It also has access to the greatest unit test library [Vitest](https://vitest.dev/) which is a great tool for testing your code. Vitest > Jest**
+
 ### Features
 
 Vite has many features that make it a great choice for your next project. Some of the features of Vite include:
