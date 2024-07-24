@@ -77,6 +77,8 @@ There are a few convetions like adding an _ to make a route not accessible (usef
 
 Utilizing the power of Vite through their plugins, this automatically generates the routes for you, so you don't have to worry about it.
 
+[Check the documentation](https://tanstack.com/router/latest/docs/framework/react/comparison) for more information.
+
 ## Server-side routing vs client-side routing
 
 ### Server-side routing
