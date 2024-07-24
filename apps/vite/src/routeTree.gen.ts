@@ -54,22 +54,37 @@ const DogsDogsRoute = DogsDogsImport.update({
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/_dogs': {
+      id: '/_dogs'
+      path: ''
+      fullPath: ''
       preLoaderRoute: typeof DogsImport
       parentRoute: typeof rootRoute
     }
     '/componentBuilding': {
+      id: '/componentBuilding'
+      path: '/componentBuilding'
+      fullPath: '/componentBuilding'
       preLoaderRoute: typeof ComponentBuildingImport
       parentRoute: typeof rootRoute
     }
     '/memoization': {
+      id: '/memoization'
+      path: '/memoization'
+      fullPath: '/memoization'
       preLoaderRoute: typeof MemoizationImport
       parentRoute: typeof rootRoute
     }
     '/_dogs/dogs': {
+      id: '/_dogs/dogs'
+      path: '/dogs'
+      fullPath: '/dogs'
       preLoaderRoute: typeof DogsDogsImport
       parentRoute: typeof DogsImport
     }
@@ -78,11 +93,46 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([
+export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
-  DogsRoute.addChildren([DogsDogsRoute]),
+  DogsRoute: DogsRoute.addChildren({ DogsDogsRoute }),
   ComponentBuildingRoute,
   MemoizationRoute,
-])
+})
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/",
+        "/_dogs",
+        "/componentBuilding",
+        "/memoization"
+      ]
+    },
+    "/": {
+      "filePath": "index.lazy.tsx"
+    },
+    "/_dogs": {
+      "filePath": "_dogs.tsx",
+      "children": [
+        "/_dogs/dogs"
+      ]
+    },
+    "/componentBuilding": {
+      "filePath": "componentBuilding.tsx"
+    },
+    "/memoization": {
+      "filePath": "memoization.tsx"
+    },
+    "/_dogs/dogs": {
+      "filePath": "_dogs/dogs.tsx",
+      "parent": "/_dogs"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
