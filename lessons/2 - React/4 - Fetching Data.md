@@ -104,3 +104,7 @@ Notice any issue? We are always recalling the same fetch and the user always see
 Tanstack Query is a library that provides a set of hooks for fetching, caching, and updating data. It is a great way to fetch data in a React application. It provides a set of hooks that allow you to fetch data and manage the state of the data.
 
 Check the folders inside of the `api` folder to see how to use it. We already created a `useQuery` hook that you can use to fetch data.
+
+While Tanstack can be seen as fetching library, it is more like a async state management library. It is a great way to manage the state of your data and keep it in sync with the server. It is incredibly recommended if you are not working with a framework that already provides a way to fetch data.
+
+[Here is a blog post explaining why you want React Query](https://tkdodo.eu/blog/why-you-want-react-query)
