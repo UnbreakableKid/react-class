@@ -48,7 +48,9 @@ The setup of the routes is done by how they are organized in the file system.
 
 ## What is react-router-dom?
 
-`react-router-dom` is a routing library for React. It allows you to create routes in your application and navigate between them. It is the most popular routing library for React and it is widely used in the React community.
+`react-router-dom` is a routing library for React. It allows you to create routes in your application and navigate between them. It is the most popular routing library for React and it is widely used in the React community. It is now going to be renamed `react-router`.
+
+React Router is testing and soon releasing a new version with file-based routing, with a Vite plugin.
 
 ### Features
 
