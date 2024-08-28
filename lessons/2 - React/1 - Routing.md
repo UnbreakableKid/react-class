@@ -52,6 +52,8 @@ The setup of the routes is done by how they are organized in the file system.
 
 React Router is testing and soon releasing a new version with file-based routing, with a Vite plugin.
 
+[Announcement](https://x.com/markdalgleish/status/1828583027485876547)
+
 ### Features
 
 `react-router-dom` has many features that make it a great choice for your next project. Some of the features of `react-router-dom` include:
