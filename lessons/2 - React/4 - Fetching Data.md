@@ -99,6 +99,10 @@ function App() {
 
 Notice any issue? We are always recalling the same fetch and the user always sees the loading state, even if the data is already in the state.
 
+### Fetching data with the useEffect hook
+
+React strictly recommends against using the useEffect hook to fetch data. The useEffect hook is meant to be used for side effects, not for fetching data. The useEffect hook is called after the render phase, specifically in the commit phase. This means that React will render the component first and then call the useEffect hook. This can lead to a flash of content on the screen in the best case scenario.
+
 ## Tanstack Query / React Query
 
 Tanstack Query is a library that provides a set of hooks for fetching, caching, and updating data. It is a great way to fetch data in a React application. It provides a set of hooks that allow you to fetch data and manage the state of the data.
