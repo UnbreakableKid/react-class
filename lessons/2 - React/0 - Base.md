@@ -105,6 +105,6 @@ React components will **rerender** when the state or props change. React will re
 ## React 3 Phases
 
 React has 3 phases:
-- Render phase (mounting, updating (useState, useReducer, etc.))
+- Render phase (mounting, updating (useState, useReducer, useCallback, etc.))
 - Commit phase (DOM updates, useEffect, useLayoutEffect, etc.)
 - Cleanup phase (clean up effects, etc.)
