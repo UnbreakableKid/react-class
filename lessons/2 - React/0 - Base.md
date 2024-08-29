@@ -102,9 +102,9 @@ function App() {
 
 React components will **rerender** when the state or props change. React will rerender every child component of the component that changed. This is why it's important to keep the state at the top of the component tree, and to use the `useMemo` and `useCallback` hooks to prevent unnecessary rerenders.
 
-## React 3 Phases
+## React Cycle
 
-React has 3 phases:
+React has a lifecycle that goes through the following phases:
 - Render phase (mounting, updating (useState, useReducer, useCallback, etc.))
 - Commit phase (DOM updates, useEffect, useLayoutEffect, etc.)
 - Cleanup phase (clean up effects, etc.)
