@@ -114,7 +114,7 @@ While Tanstack can be seen as fetching library, it is more like a async state ma
 [Here is a blog post explaining why you want React Query](https://tkdodo.eu/blog/why-you-want-react-query)
 
 
-## Render on Fetch
+## Fetch on Render
 
 When you fetch data inside a component, usually the component will render first and then the data will be fetched. Looking at the example below, the component will render first, and then the data will be fetched and the component will rerender with the new data.
 
