@@ -112,3 +112,57 @@ Check the folders inside of the `api` folder to see how to use it. We already cr
 While Tanstack can be seen as fetching library, it is more like a async state management library. It is a great way to manage the state of your data and keep it in sync with the server. It is incredibly recommended if you are not working with a framework that already provides a way to fetch data.
 
 [Here is a blog post explaining why you want React Query](https://tkdodo.eu/blog/why-you-want-react-query)
+
+
+## Render on Fetch
+
+When you fetch data inside a component, usually the component will render first and then the data will be fetched. Looking at the example below, the component will render first, and then the data will be fetched and the component will rerender with the new data.
+
+It can get even worse. When this cycle is done, each of the friends will do the same thing as they are rendered first, and then the data will be fetched and the component will rerender with the new data.
+
+```jsx
+
+export function FriendsList(){
+  const { data, isLoading, error } = getFriends();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+}
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  return (
+    <ul>
+      {data.map((friend) => (
+        <li key={friend.id}>{friend.name}</li>
+      ))}
+    </ul>
+  );
+
+}
+
+export Function FriendItem(props: {id: number}) {
+  const { data, isLoading, error } = getFriend(props.id);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+}
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      <p>{data.bio}</p>
+    </div>
+  );
+}
+```
+
+[Drama](https://bobaekang.com/blog/component-colocation-composition/) - This is a great article that explains the problem of component colocation and composition.
+
+Some tech has been in place, like Remix using data fetching on routes or even in Tanstack Router.
