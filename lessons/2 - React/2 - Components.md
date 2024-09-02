@@ -141,7 +141,7 @@ function App() {
 
 React components will **rerender** when the state or props change. React will rerender every child component of the component that changed. This is why it's important to keep the state at the top of the component tree, and to use the `useMemo` and `useCallback` hooks to prevent unnecessary rerenders.
 
-When the component receives children as props (i.e use them between the tags, the slots), they are not rerendered.
+When the component receives children as props (i.e use them between the tags, the slots), they are not rerendered. If you use the the devtools' profiler, you can see that the children are not rerendered, even though, the border color might appear.
 
 ```jsx
 
