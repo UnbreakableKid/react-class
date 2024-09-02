@@ -96,6 +96,9 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 
 In this example, `useCallback` is used to memoize the `handleSubmit` function. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
 
+#### Note:
+**This hook is very important to use when you are passing callbacks to child components. It will prevent unnecessary re-renders.** Because in JavaScript, 2 functions that are the same are not the same, since they have different references in memory.
+
 
 ### Difference with `useMemo`
 
