@@ -82,7 +82,7 @@ In this example, useCallback ensures that handleClick only changes when count ch
 
 ### Bonus: useCallback vs useReducer
 
-Sometimes when you need to manage more complex state logic, instead of using useState and useCallback, you can use useReducer.
+Sometimes when you need to manage more complex state logic, instead of using useState and useCallback, you can use useReducer. This is because with useCallback, it's a wrapper where React will watch for changes in the dependencies and only re-render the component when the dependencies change, while in reducer the functions are "static".
 
 ```jsx
 import React, { useReducer } from 'react';
