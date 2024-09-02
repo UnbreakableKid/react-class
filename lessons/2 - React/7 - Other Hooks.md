@@ -80,6 +80,76 @@ const ChildComponent = React.memo(function ChildComponent({ onClick }) {
 ```
 In this example, useCallback ensures that handleClick only changes when count changes, potentially reducing unnecessary re-renders of ChildComponent.
 
+### Bonus: useCallback vs useReducer
+
+Sometimes when you need to manage more complex state logic, instead of using useState and useCallback, you can use useReducer.
+
+```jsx
+import React, { useReducer } from 'react';
+
+//useState + useCallback
+function Itmes() {
+  const [items, setItems] = useState(initialItems);
+  const addItem = useCallback(() => {
+    setItems([...items, newItem]);
+    setNewItem('');
+  }, [items, newItem]);
+
+  const removeItem = useCallback((id) => {
+    setItems(items.filter((item) => item.id !== id));
+  }, [items]);
+  return (
+    <div>
+      {items.map((item) => (
+        <div key={item.id}>
+          <h1>{item.name}</h1>
+          <button onClick={() => removeItem(item.id)}>Remove</button>
+        </div>
+      ))}
+      <input type="text" value={newItem} onChange={(e) => setNewItem(e.target.value)} />
+      <button onClick={addItem}>Add</button>
+    </div>
+  );
+}
+
+//useReducer
+function reducer(state, action) {
+  function remove(state, id) {
+    return state.filter((item) => item.id !== id);
+  }
+  function add(state, name) {
+    return [...state, { id: state.length + 1, name }];
+  }
+
+  switch (action.type) {
+    case 'add':
+      return add(state, action.name);
+    case 'remove':
+      return remove(state, action.id);
+    default:
+      throw new Error('Unknown action');
+  }
+}
+
+
+function Items() {
+  const [state, dispatch] = useReducer(reducer, initialItems);
+
+  return (
+    <div>
+      {state.map((item) => (
+        <div key={item.id}>
+          <h1>{item.name}</h1>
+          <button onClick={() => dispatch({ type: 'remove', id: item.id })}>Remove</button>
+        </div>
+      ))}
+      <input type="text" value={newItem} onChange={(e) => dispatch({ type: 'add', name: e.target.value })} />
+      <button onClick={() => dispatch({ type: 'add', name: newItem })}>Add</button>
+    </div>
+  );
+}
+```
+
 ## 4. useMemo - Memoizing Expensive Computations
 
 useMemo is used to memoize the result of expensive computations. It recalculates the value only when one of its dependencies changes.
