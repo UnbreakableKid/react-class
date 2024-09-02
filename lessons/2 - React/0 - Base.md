@@ -98,69 +98,6 @@ function App() {
   );
 }
 ```
-## Rerendering
-
-React components will **rerender** when the state or props change. React will rerender every child component of the component that changed. This is why it's important to keep the state at the top of the component tree, and to use the `useMemo` and `useCallback` hooks to prevent unnecessary rerenders.
-
-When the component receives children as props (i.e use them between the tags, the slots), they are not rerendered.
-
-```jsx
-
-function Grandchild({name}) {
-  return (
-    <div>
-      <h1>{name}</h1>
-    </div>
-  );
-}
-
-function Parent({name}) {
-  return (
-    <div>
-      <Grandchild name={name} />
-    </div>
-  );
-}
-
-function Grandfather() {
-  const [name, setName] = useState('John');
-  return (
-    <div>
-      <Parent name={name} />
-      <button onClick={() => setName('Jane')}>Change Name</button>
-    </div>
-  );
-}
-
-// same example but with slots
-
-function Grandchild({name}) {
-  return (
-    <div>
-      <h1>{name}</h1>
-    </div>
-  );
-}
-
-function Parent({children}) {
-  return (
-    <div>
-      {children}
-    </div>
-  );
-}
-
-function Grandfather() {
-  const [name, setName] = useState('John');
-  return (
-    <div>
-      <Parent>
-        <Grandchild name={name} />
-      </Parent>
-      <button onClick={() => setName('Jane')}>Change Name</button>
-    </div>
-  );
-}
 
 
 ## React Cycle
