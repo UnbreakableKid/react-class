@@ -1,140 +1,127 @@
-# Other Hooks
+# Useful React Hooks for Beginners
 
-## useRef
+React Hooks are special functions that allow you to use state and other React features in functional components. This lesson covers some important hooks beyond useState and useEffect.
 
-`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component.
+## 1. useRef - Creating Persistent References
+
+useRef allows you to create a mutable reference that persists across re-renders. It's commonly used to access DOM elements directly.
+
+### Example: Focusing an Input
 
 ```jsx
-
 import React, { useRef, useEffect } from 'react';
 
-function TextInputWithFocusButton() {
-  const inputEl = useRef(null);
-  const onButtonClick = () => {
-    // `current` points to the mounted text input element
-    inputEl.current.focus();
-  };
+function AutoFocusInput() {
+  const inputRef = useRef(null);
+
   useEffect(() => {
-    inputEl.current.focus();
+    // Focus the input when the component mounts
+    inputRef.current.focus();
   }, []);
 
-  return (
-    <>
-      <input ref={inputEl} type="text" />
-      <button onClick={onButtonClick}>Focus the input</button>
-    </>
-  );
+  return <input ref={inputRef} type="text" />;
 }
+
 ```
+In this example, useRef creates a reference to the input element, allowing us to focus it when the component mounts.
 
+## 2. useReducer - Managing Complex State
 
-## useReducer
-
-`useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.
+useReducer is an alternative to useState for managing more complex state logic. It's especially useful when the next state depends on the previous one.
 
 ```jsx
-
 import React, { useReducer } from 'react';
-
-const initialState = { count: 0 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
-    default:
-      throw new Error();
+    case 'increment': return { count: state.count + 1 };
+    case 'decrement': return { count: state.count - 1 };
+    default: throw new Error('Unknown action');
   }
 }
 
 function Counter() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
   return (
-    <>
+    <div>
       Count: {state.count}
       <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
       <button onClick={() => dispatch({ type: 'increment' })}>+</button>
-    </>
-  );
-}
-```
-
-In this example, `dispatch` is passed down to the buttons, so they can update the state.
-
-# The following hooks are used for performance optimization. They are not used as often as the other hooks, but they are still important to know.
-
-
-## useCallback
-
-`useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. When rendering a component, a function is created every time the component renders. In this example, every time the user toggles the theme, a new `handleSubmit` function is created.
-
-```jsx
-import { useCallback } from 'react';
-
-function ProductPage({ productId, referrer, theme }) {
-  const handleSubmit = useCallback((orderDetails) => {
-    post('/product/' + productId + '/buy', {
-      referrer,
-      orderDetails,
-    });
-  }, [productId, referrer]);
-  // ...
-
-    return (
-    <div className={theme}>
-      <ShippingForm onSubmit={handleSubmit} />
     </div>
   );
 }
-
-const ShippingForm = memo(function ShippingForm({ onSubmit }) {
-  // ...
-});
 ```
 
-In this example, `useCallback` is used to memoize the `handleSubmit` function. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+Here, useReducer manages the counter state, making it easier to handle multiple related state transitions.
 
-#### Note:
-**This hook is very important to use when you are passing callbacks to child components. It will prevent unnecessary re-renders.** Because in JavaScript, 2 functions that are the same are not the same, since they have different references in memory.
+## 3. useCallback - Optimizing Performance with Memoized Callbacks
 
-
-### Difference with `useMemo`
-
-`useCallback` is similar to `useMemo`, but instead of returning a memoized value, it returns a memoized callback. The difference is that `useMemo` will only recompute the memoized value when one of the dependencies has changed, while `useCallback` will only return a new callback if one of the dependencies has changed.
-
-### Why not use useEffect?
-
-You might be wondering why not use `useEffect` to achieve the same result. The difference is that `useEffect` will run the effect after every render, while `useCallback` will only return a memoized callback if one of the dependencies has changed.
-
-## useMemo
-
-`useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+useCallback returns a memoized version of a callback function. This is useful for optimizing performance in child components that depend on callback equality to prevent unnecessary re-renders.
 
 ```jsx
+import React, { useCallback, useState } from 'react';
 
-import React, { useMemo } from 'react';
+function ParentComponent() {
+  const [count, setCount] = useState(0);
 
-function Parent() {
-  const [largeDataSet, setLargeDataSet] = useState([]);
-  useEffect(() => {
-    // fetch large data set
-    setLargeDataSet(largeDataSet);
-  }, []);
+  const handleClick = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
 
-  const sortedDataSet = useMemo(() => {
-    return largeDataSet.sort();
-  }, [largeDataSet]);
-
-  return <Child sortedDataSet={sortedDataSet} />;
-
+  return <ChildComponent onClick={handleClick} />;
 }
 
-function Child({ sortedDataSet }) {
-  return <p>{sortedDataSet}</p>;
+// React.memo is used to optimize the child component
+const ChildComponent = React.memo(function ChildComponent({ onClick }) {
+  console.log("Child component rendered");
+  return <button onClick={onClick}>Click me</button>;
+});
+```
+In this example, useCallback ensures that handleClick only changes when count changes, potentially reducing unnecessary re-renders of ChildComponent.
+
+## 4. useMemo - Memoizing Expensive Computations
+
+useMemo is used to memoize the result of expensive computations. It recalculates the value only when one of its dependencies changes.
+
+```jsx
+import React, { useState, useMemo } from 'react';
+
+function ExpensiveCalculation({ list }) {
+  const [filter, setFilter] = useState('');
+
+  const filteredList = useMemo(() => {
+    console.log("Filtering list...");
+    return list.filter(item => item.toLowerCase().includes(filter.toLowerCase()));
+  }, [list, filter]);
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        placeholder="Filter list"
+      />
+      <ul>
+        {filteredList.map((item, index) => <li key={index}>{item}</li>)}
+      </ul>
+    </div>
+  );
 }
 ```
-## NOTE: Sometimes it's better to not do any optimization at all
+Here, useMemo ensures that the expensive filtering operation only runs when list or filter changes, not on every render.
 
-Most of the times, you should not worry about performance optimization until you have a performance problem. Optimizing too early can lead to unnecessary complexity and make the code harder to understand. Not only that, but it can also lead to premature optimization, which is the root of all evil.
+# Important Note on Optimization
+
+While these hooks can improve performance, it's crucial to understand that premature optimization can lead to unnecessary complexity. Always measure performance before optimizing, and only use these hooks when you have identified a specific performance issue.
+
+Remember, React is generally fast out of the box, and these optimizations are only necessary for specific scenarios involving frequent re-renders or expensive computations.
+
+## Quick Optimization Tips
+ - If you can soolve it by shaping the hierarchyo or state, do it first.
+ - Be sure to give keys to your map function to prevent unnecessary re-renders
+ - Memoize is good **only** if the cost pays for itself.
+ - Look at using the Suspense API to defer loading of expensive components.
+
+Go watch Steve Kinney on Frontend Masters for a great workshop on optimization and performance in React.
