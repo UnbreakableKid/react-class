@@ -1,8 +1,9 @@
 {
-    "recommendations": [
-        "biomejs.biome",
-        "yoavbls.pretty-ts-errors",
-        "bradlc.vscode-tailwindcss",
-        "meganrogge.template-string-converter"
-    ]
+  "recommendations": [
+    "biomejs.biome",
+    "yoavbls.pretty-ts-errors",
+    "bradlc.vscode-tailwindcss",
+    "meganrogge.template-string-converter",
+    "bierner.markdown-mermaid"
+  ]
 }
