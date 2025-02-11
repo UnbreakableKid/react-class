@@ -18,7 +18,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@libsql/client": "^0.6.0",
+    "@libsql/client": "^0.14.0",
     "drizzle-orm": "^0.30.10",
     "tsx": "4.7.1"
   }

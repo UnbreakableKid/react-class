@@ -9,11 +9,11 @@
     "@hono/node-server": "^1.12.0",
     "@hono/zod-validator": "^0.2.2",
     "@repo/database": "workspace:*",
-    "hono": "^4.5.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.14.12",
+    "hono": "^4.7.0",
     "tsx": "^4.19.2"
   }
 }
