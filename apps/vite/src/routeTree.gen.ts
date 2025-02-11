@@ -14,9 +14,9 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as MemoizationImport } from './routes/memoization'
+import { Route as DogsImport } from './routes/dogs'
 import { Route as ComponentBuildingImport } from './routes/componentBuilding'
-import { Route as DogsImport } from './routes/_dogs'
-import { Route as DogsDogsImport } from './routes/_dogs/dogs'
+import { Route as DogsIndexImport } from './routes/dogs/index'
 
 // Create Virtual Routes
 
@@ -29,13 +29,13 @@ const MemoizationRoute = MemoizationImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ComponentBuildingRoute = ComponentBuildingImport.update({
-  path: '/componentBuilding',
+const DogsRoute = DogsImport.update({
+  path: '/dogs',
   getParentRoute: () => rootRoute,
 } as any)
 
-const DogsRoute = DogsImport.update({
-  id: '/_dogs',
+const ComponentBuildingRoute = ComponentBuildingImport.update({
+  path: '/componentBuilding',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,8 +44,8 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const DogsDogsRoute = DogsDogsImport.update({
-  path: '/dogs',
+const DogsIndexRoute = DogsIndexImport.update({
+  path: '/',
   getParentRoute: () => DogsRoute,
 } as any)
 
@@ -60,18 +60,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/_dogs': {
-      id: '/_dogs'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof DogsImport
-      parentRoute: typeof rootRoute
-    }
     '/componentBuilding': {
       id: '/componentBuilding'
       path: '/componentBuilding'
       fullPath: '/componentBuilding'
       preLoaderRoute: typeof ComponentBuildingImport
+      parentRoute: typeof rootRoute
+    }
+    '/dogs': {
+      id: '/dogs'
+      path: '/dogs'
+      fullPath: '/dogs'
+      preLoaderRoute: typeof DogsImport
       parentRoute: typeof rootRoute
     }
     '/memoization': {
@@ -81,11 +81,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemoizationImport
       parentRoute: typeof rootRoute
     }
-    '/_dogs/dogs': {
-      id: '/_dogs/dogs'
-      path: '/dogs'
-      fullPath: '/dogs'
-      preLoaderRoute: typeof DogsDogsImport
+    '/dogs/': {
+      id: '/dogs/'
+      path: '/'
+      fullPath: '/dogs/'
+      preLoaderRoute: typeof DogsIndexImport
       parentRoute: typeof DogsImport
     }
   }
@@ -95,8 +95,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
-  DogsRoute: DogsRoute.addChildren({ DogsDogsRoute }),
   ComponentBuildingRoute,
+  DogsRoute: DogsRoute.addChildren({ DogsIndexRoute }),
   MemoizationRoute,
 })
 
@@ -109,29 +109,29 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/_dogs",
         "/componentBuilding",
+        "/dogs",
         "/memoization"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
     },
-    "/_dogs": {
-      "filePath": "_dogs.tsx",
-      "children": [
-        "/_dogs/dogs"
-      ]
-    },
     "/componentBuilding": {
       "filePath": "componentBuilding.tsx"
+    },
+    "/dogs": {
+      "filePath": "dogs.tsx",
+      "children": [
+        "/dogs/"
+      ]
     },
     "/memoization": {
       "filePath": "memoization.tsx"
     },
-    "/_dogs/dogs": {
-      "filePath": "_dogs/dogs.tsx",
-      "parent": "/_dogs"
+    "/dogs/": {
+      "filePath": "dogs/index.tsx",
+      "parent": "/dogs"
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_dogs")({
+export const Route = createFileRoute("/dogs")({
 	component: DogLayout,
 });
 
