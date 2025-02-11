@@ -2,7 +2,7 @@ This is a monorepo project created with Turbo + Pnpm. The structure allows us to
 
 The repo was created to help fellow teammates to get a refresher, learn and practice new technologies, and also to have a reference for future projects.
 
-Some of the technologies used in this project are:
+Some of the technologies (up to date for 11/02/2025) used in this project are:
 
 - Vite
 - React

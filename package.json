@@ -30,7 +30,8 @@
     "onlyBuiltDependencies": [
       "@biomejs/biome",
       "es5-ext",
-      "esbuild"
+      "esbuild",
+      "sharp"
     ]
   },
   "packageManager": "pnpm@10.3.0"
