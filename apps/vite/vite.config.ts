@@ -7,10 +7,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), ValidateEnv(), TanStackRouterVite(), tailwindcss()],
-	resolve: {
-		alias: {
-			"@": path.resolve(__dirname, "./src"),
-		},
-	},
+  plugins: [
+    react(),
+    ValidateEnv(),
+    TanStackRouterVite({
+      autoCodeSplitting: true,
+    }),
+    tailwindcss(),
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });
