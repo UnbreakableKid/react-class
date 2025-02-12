@@ -1,7 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import type { QueryClient } from "@tanstack/react-query";
-import Navbar from "@/components/Navbar";
 import { lazy } from "react";
 
 export const Route = createRootRouteWithContext<{
@@ -25,7 +24,6 @@ const TanStackRouterDevtools =
 function Layout() {
   return (
     <div className="container">
-      <Navbar />
       <Outlet />
       <TanStackRouterDevtools />
     </div>
