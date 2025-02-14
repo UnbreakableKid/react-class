@@ -224,9 +224,6 @@ importers:
       eslint-plugin-storybook:
         specifier: ^0.8.0
         version: 0.8.0(eslint@8.57.0)(typescript@5.5.4)
-      postcss:
-        specifier: ^8.4.39
-        version: 8.4.39
       storybook:
         specifier: ^8.5.4
         version: 8.5.4(prettier@3.5.0)
