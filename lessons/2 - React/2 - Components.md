@@ -200,7 +200,7 @@ function Grandfather() {
     </div>
   );
 }
-
+```
 
 ## Component lifecycle
 
@@ -256,5 +256,5 @@ Control + Shift + P -> Preferences: Configure User Snippets -> typescriptreact.j
     ],
     "description": "Typescript React Function Component without Props"
   }
-}
+
 ```
